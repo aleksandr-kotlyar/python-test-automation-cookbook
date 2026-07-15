@@ -20,11 +20,16 @@
   rules:
     - changes:
         - '**/*.py'
+        - Dockerfile
         - requirements.txt
+        - Pipfile
+        - Pipfile.lock
         - pytest.ini
         - .gitlab/.gitlab-ci.yml
         - .gitlab/allure.yml
+        - .gitlab/build.yml
         - .gitlab/pytest.yml
+        - .gitlab/security.yml
   tags:
     - macos-local
 
