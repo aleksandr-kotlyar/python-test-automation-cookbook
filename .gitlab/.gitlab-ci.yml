@@ -45,10 +45,9 @@ include:
   - local: '.gitlab/security.yml'
   - local: '.gitlab/pytest.yml'
   - local: '.gitlab/browser.yml'
-  - component: gitlab.com/aleksandr-kotlyar/gitlab-allure-history/gitlab-allure-history@2026.2.9
+  - component: gitlab.com/aleksandr-kotlyar/allure-history-gitlab/allure-history-gitlab@2026.4.1
     inputs:
       environment: dev
-      allure-history-image-tag: "2026.2.9"
       pages-branch: gl-pages
       reports-to-keep: "30"
   - local: '.gitlab/allure.yml'
