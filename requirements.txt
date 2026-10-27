@@ -1,6 +1,7 @@
 allure-pytest==2.13.5
 assertpy==1.1
 beautifulsoup4==4.12.3
+certifi==2026.10.23
 pytest==9.0.3
 requests==2.33.0
 selene==2.0.0rc9
