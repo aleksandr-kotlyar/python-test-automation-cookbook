@@ -172,7 +172,6 @@ Report:
       artifacts: true
     - job: Pytest
       artifacts: false
-      optional: true
 
   script:
     - mkdir json
