@@ -11,6 +11,10 @@ on:
       - requirements.txt
       - pytest.ini
       - .github/workflows/test_api.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   pytest:
@@ -25,3 +29,44 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - run: pytest src/test/test_api.py
+      - name: Upload Allure results
+        if: ${{ always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-results
+          path: allure-results/
+          if-no-files-found: error
+
+  publish-allure-history:
+    needs: pytest
+    if: ${{ always() && needs.pytest.result != 'skipped' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    concurrency:
+      group: allure-history-github-pages
+      cancel-in-progress: false
+    steps:
+      - name: Download Allure results
+        uses: actions/download-artifact@v8
+        with:
+          name: allure-results
+          path: allure-results
+      - name: Build and persist Allure history
+        id: report
+        uses: aleksandr-kotlyar/allure-history-github@2026.4.1
+        with:
+          results-dir: allure-results
+          environment: dev
+          reports-to-keep: 30
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ steps.report.outputs.public-dir }}
+      - uses: actions/deploy-pages@v5
+        id: deploy
