@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "required": [
+    "args",
+    "headers",
+    "origin",
+    "url"
+  ],
+  "properties": {
+    "args": {
+      "$id": "#/properties/args",
+      "type": "object"
+    },
+    "headers": {
+      "$id": "#/properties/headers",
+      "type": "object",
+      "required": [
+        "Accept",
+        "Accept-Encoding",
+        "Host",
+        "User-Agent"
+      ],
+      "properties": {
+        "Accept": {
+          "$id": "#/properties/headers/properties/Accept",
+          "type": "string"
+        },
+        "Accept-Encoding": {
+          "$id": "#/properties/headers/properties/Accept-Encoding",
+          "type": "string"
+        },
+        "Host": {
+          "$id": "#/properties/headers/properties/Host",
+          "type": "string"
+        },
+        "User-Agent": {
+          "$id": "#/properties/headers/properties/User-Agent",
+          "type": "string"
+        }
+      }
+    },
+    "origin": {
+      "$id": "#/properties/origin",
+      "type": "string"
+    },
+    "url": {
+      "$id": "#/properties/url",
+      "type": "string"
+    }
+  }
+}

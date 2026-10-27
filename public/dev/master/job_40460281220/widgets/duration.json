@@ -1,0 +1,1 @@
+[{"uid":"13e79bcaf93c1c6","name":"HTTPBIN PATCH \"/patch\" matches schema \"patch.json\"","time":{"start":1793081905108,"stop":1793081905110,"duration":2},"status":"passed","severity":"normal"},{"uid":"9f17632c4b5a3982","name":"HTTPBIN GET \"/get\" matches schema \"get.json\"","time":{"start":1793081905106,"stop":1793081905107,"duration":1},"status":"passed","severity":"normal"}]
