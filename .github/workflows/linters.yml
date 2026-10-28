@@ -13,7 +13,7 @@ jobs:
           python-version: '3.14'
       - uses: psf/black@stable
         with:
-          version: "26.3.1"
+          version: "26.10.1"
           options: "--check --diff"
 
   Pycodestyle:
@@ -61,7 +61,7 @@ jobs:
         run: |
           pip install -r requirements-lint.txt
           touch __init__.py
-          pylint $(pwd) --rcfile=.pylintrc --disable="$(cat .pylint-disabled-rules)" --ignore-patterns=.venv,venv
+          pylint $(pwd) --rcfile=.pylintrc --ignore-patterns=.venv,venv
           rm __init__.py
 
   Pylint-full-report:

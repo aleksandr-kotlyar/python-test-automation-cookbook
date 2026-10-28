@@ -5,6 +5,8 @@ from selene import Browser, Config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.webdriver import WebDriver as ChromeDriver
+from selenium.webdriver.remote.webdriver import WebDriver as RemoteDriver
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -41,7 +43,7 @@ def custom_driver(t_browser):
     """Custom driver"""
     logging.debug('custom driver config start')
     if t_browser == 'chrome':
-        driver = webdriver.Chrome(
+        driver = ChromeDriver(
             service=ChromeService(ChromeDriverManager().install()),
             options=headless_chrome_options(),
         )
@@ -95,7 +97,7 @@ def remote_driver(t_browser, page_load_strategy=None):
         desired_capabilities = webdriver.DesiredCapabilities().CHROME
         desired_capabilities["pageLoadStrategy"] = "eager"
 
-    driver = webdriver.Remote(
+    driver = RemoteDriver(
         command_executor=remote_mapping[t_browser]['command_executor'],
         options=remote_mapping[t_browser]['options'],
     )
